@@ -139,7 +139,7 @@ const deleteUserById = async (request, response) => {
 const uploadImage = async (request, response) => {
     try {
         if (!request.file) {
-            return res.status(400).json({ message: "Không có file được tải lên" });
+            return response.status(400).json({ message: "Không có file được tải lên" });
         }
 
         // 🔹 Đường dẫn truy cập public URL
