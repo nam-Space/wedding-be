@@ -65,7 +65,11 @@ const createNewUser = async (request, response) => {
         const { fullName, image, song } = request.body
 
         const res = await User.create({
-            fullName, image, song
+            fullName,
+            image,
+            song,
+            createdAt: Date.now(),
+            updatedAt: Date.now()
         })
 
         const url = `${process.env.WEDDING_URL}?q=${encodeURIComponent(`${fullName}-${res._id}`)}`
@@ -99,7 +103,11 @@ const updateUserById = async (request, response) => {
         const res = await User.updateOne(
             { _id: id },
             {
-                fullName, image, url, song
+                fullName,
+                image,
+                url,
+                song,
+                updatedAt: Date.now()
             },
         )
 
