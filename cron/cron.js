@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const URL = process.env.BACKEND_URL;
 
-const job = new cron.CronJob("*/14 * * * *", function () {
+const job = new cron.CronJob("*/13 * * * *", function () {
     https
         .get(URL, (res) => {
             if (res.statusCode === 200) {

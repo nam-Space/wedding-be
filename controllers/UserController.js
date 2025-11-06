@@ -138,18 +138,19 @@ const deleteUserById = async (request, response) => {
 
 const uploadImage = async (request, response) => {
     try {
-        if (!request.file) {
-            return response.status(400).json({ message: "Không có file được tải lên" });
-        }
+        // if (!request.file) {
+        //     return response.status(400).json({ message: "Không có file được tải lên" });
+        // }
 
-        // 🔹 Đường dẫn truy cập public URL
-        const folder = request.query.folder || "default";
-        const fileUrl = `/${folder}/${request.file.filename}`;
+        // // 🔹 Đường dẫn truy cập public URL
+        // const folder = request.query.folder || "default";
+        // const fileUrl = `/${folder}/${request.file.filename}`;
 
         return response.json({
             isSuccess: true,
-            message: "ok",
-            fileUrl: fileUrl,
+            message: "Upload thành công!",
+            fileUrl: request.file.path, // 🔹 Cloudinary URL
+            type: request.file.mimetype,
         });
     } catch (error) {
         console.log('error', error)
