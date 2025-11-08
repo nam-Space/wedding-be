@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     image: { type: String },
     url: { type: String },
     song: { type: String },
+    location: { type: String },
+    lat: { type: Number },
+    lng: { type: Number },
     createdAt: {
         type: Date,
         default: Date.now()

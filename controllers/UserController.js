@@ -1,7 +1,6 @@
 
 const User = require("../db/userModel");
 const { default: aqp } = require("api-query-params");
-const { response } = require("express");
 require("dotenv").config();
 
 const getAllUsers = async (request, response) => {
@@ -62,12 +61,22 @@ const getUserById = async (request, response) => {
 
 const createNewUser = async (request, response) => {
     try {
-        const { fullName, image, song } = request.body
+        const {
+            fullName,
+            image,
+            song,
+            location,
+            lat,
+            lng,
+        } = request.body
 
         const res = await User.create({
             fullName,
             image,
             song,
+            location,
+            lat,
+            lng,
             createdAt: Date.now(),
             updatedAt: Date.now()
         })
@@ -89,7 +98,13 @@ const createNewUser = async (request, response) => {
 const updateUserById = async (request, response) => {
     try {
         const { id } = request.params
-        const { fullName, image, song } = request.body
+        const { fullName,
+            image,
+            song,
+            location,
+            lat,
+            lng,
+        } = request.body
         const user = await User.findOne({ _id: id })
         if (!user) {
             return response.json({
@@ -107,6 +122,9 @@ const updateUserById = async (request, response) => {
                 image,
                 url,
                 song,
+                location,
+                lat,
+                lng,
                 updatedAt: Date.now()
             },
         )
